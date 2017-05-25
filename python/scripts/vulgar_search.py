@@ -5,9 +5,9 @@
 from string import punctuation
 
 def make_inverse_index(strlist):
-    """Given a list of strings representing lines of text, builds a set
-    which maps each word of each line to the line number(s) on which it
-    appears
+    """Take a list containing lines of text and build a dictionary that
+    maps every word of every line to a list of the line numbers on which
+    it appears.
     """
     index = {}
 
@@ -27,16 +27,14 @@ def make_inverse_index(strlist):
 
 
 def sanitize(str_to_sanitize):
-    """Strips punctuation and line endings. Standardizes case to make
-    search case-insensitive
-    """
+    """Remove punctuation and line endings. Standardize case."""
     return str_to_sanitize.translate(None, punctuation + '\n').lower()
 
 
 def search(index, query, operator='OR'):
-    """Given an index and a query (a list of words), returns the set of
-    all line numbers for lines that contain ANY or ALL of the words
-    depending on the operator passed in.
+    """Take a list of search terms and return a set containing the line
+    numbers where all (output='AND') or some (output='OR') of the terms
+    can be found.
     """
     values = []
     sanitized = []
@@ -59,18 +57,16 @@ def search(index, query, operator='OR'):
 
 
 def sorted_search(index, query, operator='OR'):
-    """Converts set of values produced by search() into a list and returns
-    that list sorted
-    """
+    """Convert search() results to a list and return it sorted."""
     values = search(index, query, operator)
     values = [x for x in values]
-    values.sort()    
+    values.sort()
 
     return values
 
 # Provides a way to interact with vulgar_search fro the CL
 def try_vulgar_search():
-    """Provides a way to interact with vulgar_search from the CL"""
+    """Provide a way to interact with vulgar_search from the CL."""
     query = []
 
     while True:

@@ -16,7 +16,7 @@ to be converted.
 from math import log, floor
 
 def convert_to_base(num, base):
-    """Takes a number in base 10, transforms it to some other base"""
+    """Take a number in base 10 in base-whatever-the-user-wants"""
 
     if base <= 0:
         print "\nERROR - base must be greater than zero\n"
@@ -43,7 +43,7 @@ def convert_to_base(num, base):
     return -1 * int(result) if num < 0 else int(result)
 
 def try_base_converter():
-    """Provides a way to interact with base_converter from the CL"""
+    """Provide a way to interact with base_converter from the CL"""
     num = input("\nWhat number would you like to convert? ")
     base = input("Into which base? ")
     result = convert_to_base(num, base)
