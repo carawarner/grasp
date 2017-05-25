@@ -21,41 +21,38 @@ def makeInverseIndex(strlist):
 
   return index
 
+
 # Strips punctuation and standardizes case to maximize search results.
 def sanitize(s):
   return s.translate(None, punctuation + '\n').lower()
 
-# Given an inverse index and a query (a list of words), returns the set
-# containing line numbers for lines that contain ANY of the query words.
-def orSearch(index, query):
-  values = []
 
-  for searchterm in query:
+# Given an index and a query (a list of words), returns the set of all
+# line numbers for lines that contain ANY/ALL of the words, as decided
+# by the operator (OR,AND).
+def search(index, query, operator = 'OR'):
+  values = []
+  sanitized = []
+  for term in query:
+    sanitized.append(sanitize(term))
+
+  for searchterm in sanitized:
     if searchterm in index:
       values.append(index[searchterm])
 
-  if len(values) <= 1:
-    return values
+  if len(values) < 1:
+    return []
+  elif len(values) == 1:
+    return values[0]
+  
+  if operator.upper() == 'AND':
+    return values[0].intersection(*values[1:])
   else:
     return values[0].union(*values[1:])
 
-# Given an inverse index and a query (a list of words), returns the set
-# containing line numbers for lines that contain ALL of the query words.
-def andSearch(index, query):
-  values = []
+def sortedSearch(index, query, operator = 'OR'):
+  values = search(index, query, operator)
+  values = [x for x in values]
+  values.sort()
 
-  for searchterm in query:
-    if searchterm in index:
-      values.append(index[searchterm])
-
-  if len(values) <= 1:
-    return values
-  else:
-    return values[0].intersection(*values[1:])
-
-# Testing
-f = open('data/leaves.txt')
-strlist = f.readlines()
-index = makeInverseIndex(strlist)
-query = ['green','leaves']
-print orSearch(index, query)
+  return values
