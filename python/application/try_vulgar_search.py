@@ -1,4 +1,4 @@
-from vulgar_search import makeInverseIndex, sortedSearch
+from scripts.vulgar_search import makeInverseIndex, sortedSearch
 
 # Prompts the user to enter search terms. Inlcudes no validation whatsoever.
 def solicitSearchTerms():
