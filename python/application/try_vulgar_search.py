@@ -4,6 +4,7 @@ from scripts.vulgar_search import makeInverseIndex, sortedSearch
 def solicitSearchTerms():
   q = []
 
+  print "\n"
   while(True):
     term = str(raw_input("Add a search term (if you're done just hit enter): "))
     if term == '':
