@@ -37,4 +37,18 @@ def convert_to_base(x, base):
     # Proceed to next column
     exponent = exponent -1
 
-  return -1 * int(result) if x < 0 else int(result) 
+  return -1 * int(result) if x < 0 else int(result)
+
+# Provides a way to interact with base_converter from the CL
+def try_base_converter():
+    x = input("\nWhat number would you like to convert? ")
+    base = input("Into which base? ")
+    result = convert_to_base(x,base)
+
+    if isinstance(result, int):
+        print "\nIn base %d the number %d is represented by %d\n" % (base, x, result)
+    else:
+        print "Result that came back wasn't an integer. Something went wrong."
+
+try_base_converter()
+
