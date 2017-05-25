@@ -37,13 +37,15 @@ def search(index, query, operator='OR'):
     can be found.
     """
     values = []
-    sanitized = []
+    sanitized_input = []
     for term in query:
-        sanitized.append(sanitize(term))
+        sanitized_input.append(sanitize(term))
 
-    for searchterm in sanitized:
-        if searchterm in index:
-            values.append(index[searchterm])
+    for term in sanitized_input:
+        if term in index:
+            values.append(index[term])
+        elif operator == 'AND':
+            return [] #Shortcircuit since AND can't be satisfied.
 
     if len(values) < 1:
         return []
