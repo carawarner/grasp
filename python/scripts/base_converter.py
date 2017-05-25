@@ -16,8 +16,7 @@ to be converted.
 from math import log, floor
 
 def convert_to_base(num, base):
-    """Take a number in base 10 in base-whatever-the-user-wants"""
-
+    """Rewrite a base 10 num in base specified by input"""
     if base <= 0:
         print "\nERROR - base must be greater than zero\n"
         return
