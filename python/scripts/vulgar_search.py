@@ -1,5 +1,7 @@
 # pylint: disable=no-else-return
-"""Adapted from an exercise in "Coding the Matrix"
+"""Adapted from an exercise in "Coding the Matrix". This script ingests
+a text file, produces an index of the words in that text file, and allows
+a user to search that index for one of more words. Validation is minimal.
 """
 
 from string import punctuation
