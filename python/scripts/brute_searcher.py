@@ -68,7 +68,7 @@ def sorted_search(index, query, operator='OR'):
 
     return values
 
-def try_vulgar_search():
+def try_brute_search():
     """Provide a way to interact with vulgar_search from the CL."""
     query = []
 
