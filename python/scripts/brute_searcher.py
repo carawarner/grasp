@@ -69,7 +69,7 @@ def sorted_search(index, query, operator='OR'):
     return values
 
 def try_brute_search():
-    """Provide a way to interact with vulgar_search from the CL."""
+    """Provide a way to interact with brute_searcher from the CL."""
     query = []
 
     while True:
@@ -79,7 +79,7 @@ def try_brute_search():
 
         query.append(term)
 
-    text = open('src/leaves.txt')
+    text = open('../src/leaves.txt')
     strlist = text.readlines()
     index = make_inverse_index(strlist)
 
@@ -102,4 +102,4 @@ def try_brute_search():
     else:
         print "\nNO LINES CONTAINED EVERY SEARCH TERM.\n"
 
-try_vulgar_search()
+try_brute_search()
