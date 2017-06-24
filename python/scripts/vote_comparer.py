@@ -1,14 +1,14 @@
 # pylint: disable=relative-import
 """Adapted from an exercise in "Coding the Matrix". This script ingests
 a text file, generates a dictionary containing the voting records of diff-
-erent Senators, and surfaces methods for comparing those voting records.
+erent senators, and surfaces methods for comparing those voting records.
 There is no validation.
 """
 
 from vec import dot_prod
 
 def generate_voting_dict(strlist, index_of_first_vote):
-    """Ingest a list of strings containing Senators' names and voting
+    """Ingest a list of strings containing senators' names and voting
     records. Return a dictionary of the same.
     """
     records = [strlist[i].split(' ') for i in range(len(strlist))]
@@ -24,19 +24,19 @@ def generate_voting_dict(strlist, index_of_first_vote):
 
 def policy_compare(sen_a, sen_b, voting_dict):
     """Return an integer that is the difference between the number of
-    times the Senators agreed and the number of times they disagreed.
-    If either Senator abstained from a vote, it's skipped.
+    times the senators agreed and the number of times they disagreed.
+    If either senator abstained from a vote, it's skipped.
     """
     if not sen_a in voting_dict or not sen_b in voting_dict:
-        print "Voting record(s) unavailable for one or both Senators."
+        print "Voting record(s) unavailable for one or both senators."
         return
 
     return dot_prod(voting_dict[sen_a], voting_dict[sen_b])
 
 
 def most_similar(sen_a, voting_dict):
-    """Identify the Senator whose voting record most closely resembles
-    that of the input Senator.
+    """Identify the senator whose voting record most closely resembles
+    that of the input senator.
     """
     most_similar_sen = None
     highest_score = -1 * len(voting_dict[sen_a]) #start with disagreeing on every vote
@@ -56,8 +56,8 @@ def most_similar(sen_a, voting_dict):
 
 
 def least_similar(sen_a, voting_dict):
-    """Identify the Senator whose voting record is least like that of
-    the input Senator.
+    """Identify the senator whose voting record is least like that of
+    the input senator.
     """
     least_similar_sen = None
     lowest_score = len(voting_dict[sen_a]) #start with agreeing on every vote
@@ -77,7 +77,7 @@ def least_similar(sen_a, voting_dict):
 
 
 def list_names(voting_dict):
-    """Print a list of Senators' names."""
+    """Print a list of senators' names."""
     print voting_dict.keys()
 
 
