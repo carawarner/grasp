@@ -5,7 +5,7 @@ erent senators, and surfaces methods for comparing those voting records.
 There is limited validation.
 """
 
-from vec import dot_prod, vec_average
+from vec import dot_prod, average_vecs
 
 def generate_voting_dict(strlist, index_of_first_vote):
     """Ingest a list of strings containing senators' names and voting
@@ -91,7 +91,7 @@ def find_average_similarity2(sen_a, sen_set, voting_dict):
     of the dot products, it takes the dot product of the average.
     """
     votes = [voting_dict[sen] for sen in sen_set if not sen == sen_a]
-    average = vec_average(votes)
+    average = average_vecs(votes)
 
     return dot_prod(voting_dict[sen_a], average)
 
@@ -121,7 +121,7 @@ def most_average2(sen_set, voting_dict):
     most_average_sen = None
 
     votes = [voting_dict[sen] for sen in sen_set]
-    average = vec_average(votes)
+    average = average_vecs(votes)
 
     for sen in sen_set:
         score = dot_prod(voting_dict[sen], average)
